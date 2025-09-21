@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kedai Mantaporia</title>
+    <meta name="description" content="Menjual cemilan untukmu." />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo">KM</div>
+          <div>
+            <div style="font-weight: 800">Kedai Mantaporia</div>
+            <div style="font-size: 12px; color: var(--muted)">
+              Makana &amp; Minuman — Rasa rumahan
+            </div>
+          </div>
+        </div>
+        <nav>
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#testimoni">Testimoni</a>
+          <a href="#alamat">Alamat</a>
+        </nav>
+      </header>
+
+      <section id="home" class="home">
+        <div class="hero">
+          <h1>Selamat datang di Kedai Mantaporia</h1>
+          <p>
+            Tempatnya camilan manis dan minuman segar. Semua dibuat dengan bahan
+            berkualitas dan sentuhan rumah.
+          </p>
+          <div class="hero-cta">
+            <button
+              class="btn btn-primary"
+              onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"
+            >
+              Lihat Menu
+            </button>
+            <button
+              class="btn"
+              onclick="document.getElementById('alamat').scrollIntoView({behavior:'smooth'})"
+            >
+              Lihat Tutorial
+            </button>
+          </div>
+        </div>
+
+        <aside class="card-side">
+          <div style="font-weight: 800">Buka: 07:00 - 20:00</div>
+          <div style="font-size: 13px; color: var(--muted)">
+            Garut • COD atau Dana
+          </div>
+        </aside>
+      </section>
+
+      <!-- MENU -->
+      <section id="menu" class="menu">
+        <h2 style="margin: 0 0 12px 0">Menu Kami</h2>
+        <div class="menu-grid" id="menuGrid">
+          <!-- Items injected by JS -->
+        </div>
+      </section>
+
+      <!-- TESTIMONI -->
+      <section id="testimoni" class="testimoni">
+        <h2 style="margin-bottom: 16px">Testimoni</h2>
+        <div class="testi-container">
+          <!-- Card tampil testimoni -->
+          <div class="testi-card">
+            <button class="arrow left" onclick="prevTesti()">&#10094;</button>
+            <div class="testi-content" id="testiContent">
+              <p class="quote">“</p>
+              <p id="testiText">Belum ada testimoni.</p>
+              <p class="quote">”</p>
+              <div id="testiName" class="testi-name"></div>
+            </div>
+            <button class="arrow right" onclick="nextTesti()">&#10095;</button>
+          </div>
+
+          <!-- Form isi testimoni -->
+          <form class="testi-form" onsubmit="addTesti(event)">
+            <input type="text" id="inputName" placeholder="Nama" required />
+            <textarea
+              id="inputMessage"
+              placeholder="Tulis Testimoni..."
+              required
+            ></textarea>
+            <button type="submit" class="btn btn-primary">Kirim</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ALAMAT -->
+      <section id="alamat" class="address">
+        <h3 style="margin: 0 0 12px 0">Alamat</h3>
+        <div style="display: flex; gap: 12px; flex-direction: column">
+          <div style="font-weight: 800">Kedai Mantaporia</div>
+          <div style="color: var(--muted)">Jl. Cimanuk No.309A, Garut</div>
+          <div class="map" style="margin-top: 12px">
+            <iframe
+              width="100%"
+              height="100%"
+              frameborder="0"
+              style="border: 0"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.6222859721415!2d107.88799687442412!3d-7.202491370704054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68b17fffd28721%3A0xb57506be6f83442!2sSMKN%201%20Garut%20(SMEAN)!5e1!3m2!1sid!2sid!4v1758426257850!5m2!1sid!2sid"
+              allowfullscreen
+              aria-hidden="false"
+              tabindex="0"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="socials">
+          <a
+            href="https://wa.me/+6289510698297"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+          >
+            <!-- WhatsApp SVG -->
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.52 3.48A11.92 11.92 0 0012 0C5.373 0 .026 5.347.026 12c0 2.11.55 4.086 1.6 5.86L0 24l6.29-1.62A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.16-3.48-8.52z"
+                fill="#25D366"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <!-- IG SVG -->
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zM18.4 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"
+                fill="#C13584"
+              />
+            </svg>
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#testimoni">Testimoni</a>
+          <a href="#alamat">Alamat</a>
+        </div>
+        <div class="copyright">
+          © <span id="year"></span> Kedai Mantaporia. All rights reserved.
+        </div>
+      </footer>
+    </div>
+
+    <!-- OVERLAYS / MODALS -->
+    <div id="overlay" class="overlay" aria-hidden="true">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
+        <div class="modal-head">
+          <div>
+            <div id="modalTitle" style="font-weight: 900">Judul</div>
+            <div id="modalSub" style="color: var(--muted); font-size: 13px">
+              Sub
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center">
+            <button
+              onclick="closeModal()"
+              style="
+                background: none;
+                border: 0;
+                font-weight: 800;
+                cursor: pointer;
+              "
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p id="modalDesc" style="color: var(--muted); line-height: 1.6">
+            Deskripsi singkat...
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              margin-top: 8px;
+            "
+          >
+            <div style="font-weight: 800">Harga:</div>
+            <div id="modalPrice" style="font-weight: 900"></div>
+          </div>
+          <div style="margin-top: 12px">
+            <label style="font-weight: 800; display: block"
+              >Pilih Metode Pembayaran</label
+            >
+            <div class="radio">
+              <label
+                ><input type="radio" name="pay" value="Cash" checked />
+                Cash</label
+              >
+              <label><input type="radio" name="pay" value="Dana" /> Dana</label>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 16px">
+            <button class="btn btn-primary" id="waBtn">
+              Pesan lewat WhatsApp
+            </button>
+            <button class="btn" onclick="closeModal()">Batal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

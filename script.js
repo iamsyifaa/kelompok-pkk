@@ -1,0 +1,196 @@
+// ===== DATA MENU =====
+const menuData = [
+  {
+    id: 1,
+    name: "Sando",
+    desc: "Roti lembut isi krim segar dan potongan buah manis yang segar, cantik, dan nikmat di setiap gigitan.",
+    price: 5000,
+    rating: 4.8,
+    img: "sando.jpeg",
+  },
+  {
+    id: 2,
+    name: "Es Teh Lychee",
+    desc: "Minuman teh dingin dengan sirup lychee segar.",
+    price: 18000,
+    rating: 4.6,
+    img: "https://images.unsplash.com/photo-1564501049410-8a8a7d7b7e08?auto=format&fit=crop&w=800&q=60",
+  },
+];
+
+const menuGrid = document.getElementById("menuGrid");
+
+function formatRupiah(n) {
+  return "Rp " + n.toLocaleString("id-ID");
+}
+
+function starHTML(rating) {
+  const full = Math.floor(rating);
+  const half = rating - full >= 0.5;
+  let s = "";
+  for (let i = 0; i < full; i++) s += "★";
+  if (half) s += "½";
+  return s + " (" + rating.toFixed(1) + ")";
+}
+
+menuData.forEach((item) => {
+  const el = document.createElement("article");
+  el.className = "menu-item";
+  el.innerHTML = `
+    <div class="menu-thumb">
+      <img src="${item.img}" alt="${item.name}" loading="lazy">
+      <div class="icon-eye" data-id="${item.id}" title="Lihat detail">👁️</div>
+    </div>
+    <div class="menu-body">
+      <div class="menu-title">${item.name}</div>
+      <div class="rating">${starHTML(item.rating)}</div>
+      <div class="price">${formatRupiah(item.price)}</div>
+      <button class="buy-btn btn-primary" data-id="${
+        item.id
+      }">Beli Sekarang</button>
+    </div>
+  `;
+  menuGrid.appendChild(el);
+});
+
+// ===== MODAL =====
+const overlay = document.getElementById("overlay");
+const modalTitle = document.getElementById("modalTitle");
+const modalSub = document.getElementById("modalSub");
+const modalDesc = document.getElementById("modalDesc");
+const modalPrice = document.getElementById("modalPrice");
+const waBtn = document.getElementById("waBtn");
+
+function openModalFor(id) {
+  const item = menuData.find((m) => m.id === Number(id));
+  if (!item) return;
+
+  modalTitle.textContent = item.name;
+  modalSub.textContent = "Pesanan • " + item.name;
+  modalDesc.textContent = item.desc;
+  modalPrice.textContent = formatRupiah(item.price);
+
+  overlay.classList.add("show");
+  overlay.setAttribute("aria-hidden", "false");
+
+  waBtn.onclick = () => {
+    const pay = document.querySelector('input[name="pay"]:checked').value;
+    const message = `Halo, saya ingin memesan:
+*${item.name}*
+Harga: ${formatRupiah(item.price)}
+Metode pembayaran: ${pay}`;
+
+    // Open WA
+    const waUrl = `https://wa.me/+6289510698297?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(waUrl, "_blank");
+  };
+}
+
+function closeModal() {
+  overlay.classList.remove("show");
+  overlay.setAttribute("aria-hidden", "true");
+}
+
+// Delegation for eye icons and buy buttons
+document.addEventListener("click", (e) => {
+  const eye = e.target.closest(".icon-eye");
+  if (eye) {
+    const id = eye.dataset.id;
+    openModalFor(id);
+  }
+
+  const buy = e.target.closest(".buy-btn");
+  if (buy) {
+    const id = buy.dataset.id;
+    openModalFor(id);
+  }
+});
+
+// Close modal when clicking outside
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) closeModal();
+});
+
+// Year
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Accessibility: ESC to close
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll("nav a, .footer-links a").forEach((a) => {
+  a.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    const href = this.getAttribute("href");
+    const el = document.querySelector(href);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// ===== TESTIMONI =====
+let testimonies = JSON.parse(localStorage.getItem("testimonies") || "[]");
+let currentIndex = 0;
+
+const testiText = document.getElementById("testiText");
+const testiName = document.getElementById("testiName");
+
+// kasih class awal buat animasi
+testiText.classList.add("fade", "show");
+testiName.classList.add("fade", "show");
+
+function showTesti(index) {
+  // hapus dulu efek show (buat fade out)
+  testiText.classList.remove("show");
+  testiName.classList.remove("show");
+
+  setTimeout(() => {
+    if (testimonies.length === 0) {
+      testiText.textContent = "Belum ada testimoni.";
+      testiName.textContent = "";
+    } else {
+      const t = testimonies[index];
+      testiText.textContent = t.message;
+      testiName.textContent = t.name;
+    }
+
+    // kasih lagi efek show (buat fade in)
+    testiText.classList.add("show");
+    testiName.classList.add("show");
+  }, 200);
+}
+
+function prevTesti() {
+  if (testimonies.length === 0) return;
+  currentIndex = (currentIndex - 1 + testimonies.length) % testimonies.length;
+  showTesti(currentIndex);
+}
+
+function nextTesti() {
+  if (testimonies.length === 0) return;
+  currentIndex = (currentIndex + 1) % testimonies.length;
+  showTesti(currentIndex);
+}
+
+function addTesti(e) {
+  e.preventDefault();
+  const name = document.getElementById("inputName").value.trim();
+  const message = document.getElementById("inputMessage").value.trim();
+  if (!name || !message) return;
+
+  testimonies.push({ name, message });
+  localStorage.setItem("testimonies", JSON.stringify(testimonies));
+  document.getElementById("inputName").value = "";
+  document.getElementById("inputMessage").value = "";
+  currentIndex = testimonies.length - 1;
+  showTesti(currentIndex);
+}
+
+// tampilkan pertama kali
+showTesti(currentIndex);
+
+// auto slide setiap 3 detik
+setInterval(nextTesti, 3000);
