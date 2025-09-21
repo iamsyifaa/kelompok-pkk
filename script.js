@@ -1,3 +1,40 @@
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation(); // biar klik tombol nggak langsung nutup
+  navMenu.classList.toggle("show");
+  hamburger.classList.toggle("active"); // kasih animasi rotasi icon
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    navMenu.classList.contains("show") &&
+    !navMenu.contains(e.target) &&
+    e.target !== hamburger
+  ) {
+    navMenu.classList.remove("show");
+  }
+});
+
+// otomatis nutup kalau link diklik
+document.querySelectorAll("#navMenu a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("show");
+  });
+});
+
+// klik di luar menu → tutup
+document.addEventListener("click", (e) => {
+  if (
+    navMenu.classList.contains("show") &&
+    !navMenu.contains(e.target) &&
+    e.target !== hamburger
+  ) {
+    navMenu.classList.remove("show");
+  }
+});
+
 // ===== DATA MENU =====
 const menuData = [
   {
