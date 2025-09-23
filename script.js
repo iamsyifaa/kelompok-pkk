@@ -8,11 +8,7 @@ hamburger.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-  if (
-    navMenu.classList.contains("show") &&
-    !navMenu.contains(e.target) &&
-    e.target !== hamburger
-  ) {
+  if (navMenu.classList.contains("show") && !navMenu.contains(e.target) && e.target !== hamburger) {
     navMenu.classList.remove("show");
   }
 });
@@ -26,11 +22,7 @@ document.querySelectorAll("#navMenu a").forEach((link) => {
 
 // klik di luar menu → tutup
 document.addEventListener("click", (e) => {
-  if (
-    navMenu.classList.contains("show") &&
-    !navMenu.contains(e.target) &&
-    e.target !== hamburger
-  ) {
+  if (navMenu.classList.contains("show") && !navMenu.contains(e.target) && e.target !== hamburger) {
     navMenu.classList.remove("show");
   }
 });
@@ -47,11 +39,11 @@ const menuData = [
   },
   {
     id: 2,
-    name: "Es Teh Lychee",
-    desc: "Minuman teh dingin dengan sirup lychee segar.",
-    price: 18000,
+    name: "ESs Kuwut Melon",
+    desc: "Minuman dingin dengan Melon segar.",
+    price: 5000,
     rating: 4.6,
-    img: "https://images.unsplash.com/photo-1564501049410-8a8a7d7b7e08?auto=format&fit=crop&w=800&q=60",
+    img: "es kuwut.jpg",
   },
 ];
 
@@ -82,9 +74,7 @@ menuData.forEach((item) => {
       <div class="menu-title">${item.name}</div>
       <div class="rating">${starHTML(item.rating)}</div>
       <div class="price">${formatRupiah(item.price)}</div>
-      <button class="buy-btn btn-primary" data-id="${
-        item.id
-      }">Beli Sekarang</button>
+      <button class="buy-btn btn-primary" data-id="${item.id}">Beli Sekarang</button>
     </div>
   `;
   menuGrid.appendChild(el);
@@ -118,9 +108,7 @@ Harga: ${formatRupiah(item.price)}
 Metode pembayaran: ${pay}`;
 
     // Open WA
-    const waUrl = `https://wa.me/+6289510698297?text=${encodeURIComponent(
-      message
-    )}`;
+    const waUrl = `https://wa.me/+6289510698297?text=${encodeURIComponent(message)}`;
     window.open(waUrl, "_blank");
   };
 }
