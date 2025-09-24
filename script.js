@@ -8,7 +8,11 @@ hamburger.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-  if (navMenu.classList.contains("show") && !navMenu.contains(e.target) && e.target !== hamburger) {
+  if (
+    navMenu.classList.contains("show") &&
+    !navMenu.contains(e.target) &&
+    e.target !== hamburger
+  ) {
     navMenu.classList.remove("show");
   }
 });
@@ -22,7 +26,11 @@ document.querySelectorAll("#navMenu a").forEach((link) => {
 
 // klik di luar menu → tutup
 document.addEventListener("click", (e) => {
-  if (navMenu.classList.contains("show") && !navMenu.contains(e.target) && e.target !== hamburger) {
+  if (
+    navMenu.classList.contains("show") &&
+    !navMenu.contains(e.target) &&
+    e.target !== hamburger
+  ) {
     navMenu.classList.remove("show");
   }
 });
@@ -74,7 +82,9 @@ menuData.forEach((item) => {
       <div class="menu-title">${item.name}</div>
       <div class="rating">${starHTML(item.rating)}</div>
       <div class="price">${formatRupiah(item.price)}</div>
-      <button class="buy-btn btn-primary" data-id="${item.id}">Beli Sekarang</button>
+      <button class="buy-btn btn-primary" data-id="${
+        item.id
+      }">Beli Sekarang</button>
     </div>
   `;
   menuGrid.appendChild(el);
@@ -88,29 +98,72 @@ const modalDesc = document.getElementById("modalDesc");
 const modalPrice = document.getElementById("modalPrice");
 const waBtn = document.getElementById("waBtn");
 
-function openModalFor(id) {
+function openModalFor(id, fromBuy = false) {
   const item = menuData.find((m) => m.id === Number(id));
   if (!item) return;
 
   modalTitle.textContent = item.name;
-  modalSub.textContent = "Pesanan • " + item.name;
+  modalSub.textContent = (fromBuy ? "Pesanan • " : "Detail • ") + item.name;
   modalDesc.textContent = item.desc;
   modalPrice.textContent = formatRupiah(item.price);
 
   overlay.classList.add("show");
   overlay.setAttribute("aria-hidden", "false");
 
-  waBtn.onclick = () => {
-    const pay = document.querySelector('input[name="pay"]:checked').value;
-    const message = `Halo, saya ingin memesan:
-*${item.name}*
-Harga: ${formatRupiah(item.price)}
-Metode pembayaran: ${pay}`;
+  // Tampilkan/hidden bagian buy
+  const buySection = document.getElementById("buySection");
+  const qtyInput = document.getElementById("qtyInput");
+  const modalTotal = document.getElementById("modalTotal");
+  const buyerName = document.getElementById("buyerName");
+  const buyerClass = document.getElementById("buyerClass");
 
-    // Open WA
-    const waUrl = `https://wa.me/+6289510698297?text=${encodeURIComponent(message)}`;
-    window.open(waUrl, "_blank");
-  };
+  if (fromBuy) {
+    buySection.style.display = "block";
+
+    // reset field nama & kelas setiap buka modal
+    buyerName.value = "";
+    buyerClass.value = "";
+
+    // reset jumlah = 1 setiap buka
+    qtyInput.value = 1;
+    modalTotal.textContent = formatRupiah(item.price);
+
+    // update total kalau jumlah berubah
+    qtyInput.oninput = () => {
+      const qty = Math.max(1, parseInt(qtyInput.value) || 1);
+      qtyInput.value = qty;
+      modalTotal.textContent = formatRupiah(item.price * qty);
+    };
+
+    // tombol WA
+    waBtn.onclick = () => {
+      const buyerName = document.getElementById("buyerName").value.trim();
+      const buyerClass = document.getElementById("buyerClass").value.trim();
+      const pay = document.querySelector('input[name="pay"]:checked').value;
+      const qty = parseInt(qtyInput.value) || 1;
+      const total = item.price * qty;
+
+      // Validasi wajib isi
+      if (!buyerName || !buyerClass) {
+        alert("Harap isi Nama dan Kelas terlebih dahulu!");
+        return;
+      }
+
+      const message = `Nama: ${buyerName || "-"}
+Kelas: ${buyerClass || "-"}
+${item.name}
+Jumlah: ${qty}
+Harga satuan: ${formatRupiah(item.price)}
+Total: ${formatRupiah(total)}
+Metode pembayaran: ${pay}`;
+      const waUrl = `https://wa.me/+6289510698297?text=${encodeURIComponent(
+        message
+      )}`;
+      window.open(waUrl, "_blank");
+    };
+  } else {
+    buySection.style.display = "none";
+  }
 }
 
 function closeModal() {
@@ -122,14 +175,12 @@ function closeModal() {
 document.addEventListener("click", (e) => {
   const eye = e.target.closest(".icon-eye");
   if (eye) {
-    const id = eye.dataset.id;
-    openModalFor(id);
+    openModalFor(eye.dataset.id, false); // mode lihat detail
   }
 
   const buy = e.target.closest(".buy-btn");
   if (buy) {
-    const id = buy.dataset.id;
-    openModalFor(id);
+    openModalFor(buy.dataset.id, true); // mode beli
   }
 });
 

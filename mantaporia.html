@@ -14,7 +14,9 @@
           <div class="logo">KM</div>
           <div>
             <div style="font-weight: 800">Kedai Mantaporia</div>
-            <div style="font-size: 12px; color: var(--muted)">Makanan & Minuman — Rasa rumahan</div>
+            <div style="font-size: 12px; color: var(--muted)">
+              Makanan & Minuman — Rasa rumahan
+            </div>
           </div>
         </div>
 
@@ -33,16 +35,31 @@
       <section id="home" class="home">
         <div class="hero">
           <h1>Selamat datang di Kedai Mantaporia</h1>
-          <p>Tempatnya camilan manis dan minuman segar. Semua dibuat dengan bahan berkualitas dan sentuhan rumah.</p>
+          <p>
+            Tempatnya camilan manis dan minuman segar. Semua dibuat dengan bahan
+            berkualitas dan sentuhan rumah.
+          </p>
           <div class="hero-cta">
-            <button class="btn btn-primary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Lihat Menu</button>
-            <button class="btn" onclick="document.getElementById('').scrollIntoView({behavior:'smooth'})">Lihat Tutorial</button>
+            <button
+              class="btn btn-primary"
+              onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})"
+            >
+              Lihat Menu
+            </button>
+            <button
+              class="btn"
+              onclick="document.getElementById('').scrollIntoView({behavior:'smooth'})"
+            >
+              Lihat Tutorial
+            </button>
           </div>
         </div>
 
         <aside class="card-side">
           <div style="font-weight: 800">Buka: 07:00 - 20:00</div>
-          <div style="font-size: 13px; color: var(--muted)">Garut • COD atau Dana</div>
+          <div style="font-size: 13px; color: var(--muted)">
+            Garut • COD atau Dana
+          </div>
         </aside>
       </section>
 
@@ -73,7 +90,11 @@
           <!-- Form isi testimoni -->
           <form class="testi-form" onsubmit="addTesti(event)">
             <input type="text" id="inputName" placeholder="Nama" required />
-            <textarea id="inputMessage" placeholder="Tulis Testimoni..." required></textarea>
+            <textarea
+              id="inputMessage"
+              placeholder="Tulis Testimoni..."
+              required
+            ></textarea>
             <button type="submit" class="btn btn-primary">Kirim</button>
           </form>
         </div>
@@ -102,16 +123,44 @@
 
       <footer>
         <div class="socials">
-          <a href="https://wa.me/+6289510698297" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <a
+            href="https://wa.me/+6289510698297"
+            target="_blank"
+            rel="noopener"
+            aria-label="WhatsApp"
+          >
             <!-- WhatsApp SVG -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.52 3.48A11.92 11.92 0 0012 0C5.373 0 .026 5.347.026 12c0 2.11.55 4.086 1.6 5.86L0 24l6.29-1.62A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.16-3.48-8.52z" fill="#25D366" />
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.52 3.48A11.92 11.92 0 0012 0C5.373 0 .026 5.347.026 12c0 2.11.55 4.086 1.6 5.86L0 24l6.29-1.62A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.25-6.16-3.48-8.52z"
+                fill="#25D366"
+              />
             </svg>
           </a>
-          <a href="https://www.instagram.com/11ppl2.js?igsh=MTNqcDF4cTZ2bnZ0dg==" target="_blank" rel="noopener" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com/11ppl2.js?igsh=MTNqcDF4cTZ2bnZ0dg=="
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
             <!-- IG SVG -->
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zM18.4 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z" fill="#C13584" />
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5.5A4.5 4.5 0 1016.5 12 4.5 4.5 0 0012 7.5zM18.4 6.6a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"
+                fill="#C13584"
+              />
             </svg>
           </a>
         </div>
@@ -121,45 +170,134 @@
           <a href="#testimoni">Testimoni</a>
           <a href="#alamat">Alamat</a>
         </div>
-        <div class="copyright">© <span id="year"></span> Kedai Mantaporia. All rights reserved.</div>
+        <div class="copyright">
+          © <span id="year"></span> Kedai Mantaporia. All rights reserved.
+        </div>
       </footer>
     </div>
 
     <!-- OVERLAYS / MODALS -->
     <div id="overlay" class="overlay" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+      >
         <div class="modal-head">
           <div>
             <div id="modalTitle" style="font-weight: 900">Judul</div>
-            <div id="modalSub" style="color: var(--muted); font-size: 13px">Sub</div>
+            <div id="modalSub" style="color: var(--muted); font-size: 13px">
+              Sub
+            </div>
           </div>
           <div style="display: flex; gap: 8px; align-items: center">
-            <button onclick="closeModal()" style="background: none; border: 0; font-weight: 800; cursor: pointer">✕</button>
+            <button
+              onclick="closeModal()"
+              style="
+                background: none;
+                border: 0;
+                font-weight: 800;
+                cursor: pointer;
+              "
+            >
+              ✕
+            </button>
           </div>
         </div>
         <div class="modal-body">
-          <p id="modalDesc" style="color: var(--muted); line-height: 1.6">Deskripsi singkat...</p>
-          <div style="display: flex; gap: 12px; align-items: center; margin-top: 8px">
+          <p id="modalDesc" style="color: var(--muted); line-height: 1.6"></p>
+          <div
+            style="
+              display: flex;
+              gap: 12px;
+              align-items: center;
+              margin-top: 8px;
+            "
+          >
             <div style="font-weight: 800">Harga:</div>
             <div id="modalPrice" style="font-weight: 900"></div>
           </div>
-          <div style="margin-top: 12px">
-            <label style="font-weight: 800; display: block"
-              >Pilih Metode Pembayaran</label
-            >
-            <div class="radio">
-              <label
-                ><input type="radio" name="pay" value="Cash" checked />
-                Cash</label
-              >
-              <label><input type="radio" name="pay" value="Dana" /> Dana</label>
+
+          <!-- Bagian payment + tombol hanya muncul kalau beli -->
+          <div id="buySection">
+            <!-- Input nama & kelas -->
+            <div style="margin-top: 12px">
+              <label style="font-weight: 800; display: block">Nama:</label>
+              <input
+                type="text"
+                id="buyerName"
+                placeholder="Isi nama kamu"
+                style="
+                  width: 100%;
+                  padding: 6px;
+                  border: 1px solid #ddd;
+                  border-radius: 6px;
+                "
+              />
             </div>
-          </div>
-          <div style="display: flex; gap: 10px; margin-top: 16px">
-            <button class="btn btn-primary" id="waBtn">
-              Pesan lewat WhatsApp
-            </button>
-            <button class="btn" onclick="closeModal()">Batal</button>
+            <div style="margin-top: 12px">
+              <label style="font-weight: 800; display: block">Kelas:</label>
+              <input
+                type="text"
+                id="buyerClass"
+                placeholder="Isi kelas kamu"
+                style="
+                  width: 100%;
+                  padding: 6px;
+                  border: 1px solid #ddd;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+            <!-- Pilih jumlah -->
+            <div
+              style="
+                margin-top: 12px;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+              "
+            >
+              <label style="font-weight: 800">Jumlah:</label>
+              <input
+                type="number"
+                id="qtyInput"
+                value="1"
+                min="1"
+                style="
+                  width: 70px;
+                  padding: 6px;
+                  border: 1px solid #ddd;
+                  border-radius: 6px;
+                "
+              />
+            </div>
+
+            <!-- Total harga -->
+            <div style="margin-top: 8px; font-weight: 800">
+              Total: <span id="modalTotal"></span>
+            </div>
+            <div style="margin-top: 12px">
+              <label style="font-weight: 800; display: block"
+                >Pilih Metode Pembayaran</label
+              >
+              <div class="radio">
+                <label
+                  ><input type="radio" name="pay" value="Cash" checked />
+                  Cash</label
+                >
+                <label
+                  ><input type="radio" name="pay" value="Dana" /> Dana</label
+                >
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 16px">
+              <button class="btn btn-primary" id="waBtn">
+                Pesan lewat WhatsApp
+              </button>
+              <button class="btn" onclick="closeModal()">Batal</button>
+            </div>
           </div>
         </div>
       </div>
