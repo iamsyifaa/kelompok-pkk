@@ -41,8 +41,8 @@ const menuData = [
     id: 1,
     name: "Sando",
     desc: "Roti lembut isi krim segar dan potongan buah manis yang segar dan nikmat di setiap gigitan.",
-    price: 5000,
-    rating: 4.8,
+    price: 6000,
+    rating: 5.0,
     img: "sando.jpeg",
   },
   {
@@ -50,7 +50,7 @@ const menuData = [
     name: "Es Kuwut Melon",
     desc: "Minuman dingin dengan Melon segar.",
     price: 5000,
-    rating: 4.6,
+    rating: 5.0,
     img: "es kuwut.jpg",
   },
 ];
